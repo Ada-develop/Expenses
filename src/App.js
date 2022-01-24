@@ -1,4 +1,6 @@
-import Expenses from "./components/Expenses";
+import React from "react";
+import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = (props) => {
   const expenses = [
@@ -23,12 +25,29 @@ const App = (props) => {
     },
   ];
 
+  //{/* //Pattern to communicate data from child to parent 5 : */}
+
+  const addExpenseHandler = (expense) => {
+    console.log("In app JS");
+    console.log(expense);
+  };
+
   return (
     <div>
-      <h2>Let's get started</h2>
-      <Expenses expenses={expenses} />
+      {/* //Pattern to communicate data from child to parent 6 : */}
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} />
     </div>
   );
+
+  // // Original React :
+  // return React.createElement(
+  //   'div',
+  //   {},
+  //   React.createElement('h2',{},"Let's get started!"),
+  //   React.createElement(Expenses, {items : expenses})
+
+  // );
 };
 
 export default App;
